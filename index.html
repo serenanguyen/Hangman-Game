@@ -2,98 +2,45 @@
 <html>
 <head>
 	<title>Hangman</title>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 	<link rel="stylesheet" type="text/css" href="assets/css/style.css">	
 </head>
 <body>
-	<div class="container">
-		<div class="game col-md-8">
-			<h1> Press any key to begin </h1>
-			<div class="wins">
-				<h2>Wins: </h2>
-			</div>
-			
-			<div class="currentWord">
-				<h2>Current Word</h2>
-				<h1 id="blanks"></h1>
-			</div>
-			<div >
-				<h2 id="remaining">Remaining Guesses: 10</h2>
-			</div>
+	<div class="container text-center">
+		
+		<h1 class="col-md-12"> Press any key to begin </h1>
+		<div class="row">	
+			<div class="game col-md-6">
 				
-			<div class="guessed">
-				<h2>Letters Guessed: </h2>
-				<h3 id="used"></h3>
-			</div>
-		</div>
+				<div>
+					<h2 id="win">Wins: </h2>
+				</div>
+				
 
-		<div class="img col-md-4">
-			
-		</div> 
+				<div >
+					<h2 id="remaining">Remaining Guesses: 10</h2>
+				</div>
+
+				<img src="assets/images/ss.png">
+					
+
+			</div>
+
+			<div class="col-md-6">
+				<div class="currentWord">
+					<h2>Current Word</h2>
+					<h1 id="blanks"><br></h1>
+				</div>	
+				<div class="guessed">
+					<h2>Letters Guessed: </h2>
+					<h3 id="used"><br></h3>
+				</div>					
+			</div> 
+		</div>
 	</div>
 
-	<script type="text/javascript">
-		// hangman options
-		var options = ["totoro", "ponyo", "chihiro", "kiki", "sosuke", "yubaba"];
-		// create an array for _
-		var blank = []
-		var all;
-		var guesses = 10;
-		var userGuess;
-		var lettersGuessed= [];
-		var used;
-
-
-		// press any key to begin
-		document.onkeyup = function(event) {
-		// generating random option
-			var word = options[Math.floor(Math.random() * options.length)];
-
-			// push _ for length of word 
-			for (var i = 0; i < word.length; i++) {
-				blank.push("_ ");
-				// join array into string separated by a space
-				var all = blank.join(" ");
-
-				}
-			// print blanks to page 
-			document.getElementById('blanks').innerHTML = all;
-
-			// capturing user guess
-			document.onkeyup = function(event) {
-				// converting user guess to lowercase to match opt
-				var userGuess = String.fromCharCode(event.keyCode).toLowerCase();
-
-				console.log(word);
-				// for how long the word is
-				for (i=0; i<(word.length); i++) {
-					console.log(word[i]);
-					if(word[i] === userGuess){
-						console.log("got it");
-						blank[i] = userGuess
-						var all = blank.join(" ");
-						console.log(all);
-						document.getElementById('blanks').innerHTML = all;
-					};
-				};	
-				guesses--;
-				console.log(guesses);
-				document.getElementById('remaining').innerHTML = "Remaining Guesses: " + guesses;
-				lettersGuessed.push(userGuess);
-				var used = lettersGuessed.join(" ");
-				console.log(used);
-				document.getElementById('used').innerHTML = used;
-
-				if(guesses === 0){
-					alert("YOU LOSE!");
-				}
-
-
-				
-			};
-
-		}	
-	
-
+	<script type="text/javascript" src="assets/javascript/game.js">
 
 	</script>
 </body>
